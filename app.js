@@ -15,24 +15,23 @@ app.get('/api/v1/device', (req, res) => {
 });
 
 app.post('/api/v1/device', (req, res) => {
-    const newId = nfts[nfts.length - 1].id + 1; // Generate a new ID
-    const newNFT = Object.assign({ id: newId }, req.body); // Create a new NFT object
+    const newId = nfts[nfts.length - 1].id + 1;
+    const newNFT = Object.assign({ id: newId }, req.body);
 
-    nfts.push(newNFT); // Add the new NFT to the array
+    nfts.push(newNFT);
 
-    fs.writeFile(filePath, JSON.stringify(nfts), (err) => {
-        if (err) {
-            return res.status(500).json({
-                status: "error",
-                message: "Error writing to the file"
-            });
-        }
+    fs.writeFile(filePath,
+         JSON.stringify(nfts), 
+         (err) => {
+     
 
         res.status(201).json({
             status: "success",
             nft: newNFT
         });
+         
     });
+    res.send("POST NFT");
 });
 
 const port = 3000;
