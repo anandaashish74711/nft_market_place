@@ -1,54 +1,15 @@
-const express=require('express');
-  
-const getAllUsers=(req,res)=>{
-    res.status(500).json({
-        status:"error",
-        message:"Internet server error",
-    });
-};
-const createUser=(req,res)=>{
-    res.status(500).json({
-        status:"error",
-        message:"Internet server error",
-    });
-};
-const getsingleUser=(req,res)=>{
-    res.status(500).json({
-        status:"error",
-        message:"Internet server error",
-    });
-};
-const updateUser=(req,res)=>{
-    res.status(500).json({
-        status:"error",
-        message:"Internet server error",
-    });
-};
-const deleteUser=(req,res)=>{
-    res.status(500).json({
-        status:"error",
-        message:"Internet server error",
-    });
-
-    
-};
-
+const express = require('express');
 const router = express.Router();
-
+const userController = require('../controller/userController');
 
 // Users Routes
 router.route('/')
-    .get(getAllUsers)
-    .post(createUser);
+    .get(userController.getAllUsers)
+    .post(userController.createUser);
 
 router.route('/:id')
-    .get(getsingleUser)
-    .patch(updateUser)
-    .delete(deleteUser);
+    .get(userController.getsingleUser)
+    .patch(userController.updateUser)
+    .delete(userController.deleteUser);
 
-// Use Routers
-app.use("/api/v1/device", nftsRouter);
-app.use("/api/v1/users", userRouter);
-
-
-module.exports=router
+module.exports = router;
