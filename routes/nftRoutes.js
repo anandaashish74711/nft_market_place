@@ -4,9 +4,11 @@ const nftsController = require('../controller/nftController');
 
 Router.use(express.json());
 
+Router.param("id",nftsController.checkId);
+
 Router.route('/')
     .get(nftsController.getData)
-    .post(nftsController.postData);
+    .post(nftsController.checkBody,nftsController.postData);
 
 Router.route('/:id')
     .get(nftsController.getsingleData)

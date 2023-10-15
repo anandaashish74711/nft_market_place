@@ -384,6 +384,14 @@ const app=express();
 app.use(express.json());
 app.use(morgan("dev"));
 
+app.use(express.static(__dirname + '/api-starter-file-main/nft-data/img'));
+
+
+
+
+
+
+
 const nftRouter=require("./routes/nftRoutes");
 const userRouter=require("./routes/useRoute");
 

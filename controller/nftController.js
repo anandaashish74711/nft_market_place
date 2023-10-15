@@ -2,8 +2,25 @@ const path = require('path');
 const fs = require('fs');
 const filePath = path.join(__dirname, '..', 'Api-starter-file-main', 'nft-data', 'data', 'nft-simple.json');
 
-
-
+exports.checkId=(req,res,next,value)=>{
+    console.log(`ID:${value}`) 
+    if (req.param.id *1> nfts.length) {
+        return res.status(404).json({
+            status: "fail",
+            message: "Invalid ID"
+        });
+    }
+    next();
+}
+exports.checkBody=(req,res,next)=>{
+    if(!req.body.name||!req.body.price){
+        return res.status(400).json({
+            status:"fail",
+            message:"Missing name and price"
+        })
+    }
+    next();
+}
 // Read nfts data
 let nfts = JSON.parse(fs.readFileSync(filePath));
 
@@ -62,12 +79,7 @@ exports.updateData = (req, res) => {
     console.log(req.requestTime);
     const id = req.params.id * 1;
 
-    if (id > nfts.length) {
-        return res.status(404).json({
-            status: "fail",
-            message: "Invalid ID"
-        });
-    }
+  
 
     // Add your logic for updating nft here
 
